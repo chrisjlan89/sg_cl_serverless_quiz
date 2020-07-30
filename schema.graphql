@@ -1,0 +1,65 @@
+scalar Date
+
+type QuizQuestions {
+  _id: ID!
+  question: String
+  answers: [Answer]
+
+  media: [Media]
+}
+
+type Answer {
+  _id: ID!
+  answer: String
+  correct: Boolean
+}
+
+type Media {
+  _id: ID!
+  mediaUrl: String
+}
+
+type Quiz {
+  id: ID!
+  title: String!
+  description: String!
+  submittedBy: String!
+  createdOn: Date
+  quizQuestions: [QuizQuestions]
+}
+
+input QuizQuestionInput {
+  question: String
+  answers: [AnswerInput]
+
+  media: [MediaInput]
+}
+
+input MediaInput {
+  mediaUrl: String
+}
+
+input AnswerInput {
+  answer: String
+  correct: Boolean
+}
+
+input QuizInput {
+  title: String
+  description: String
+  submittedBy: String
+}
+
+type Query {
+  allQuizes: [Quiz]
+  sayHelloQuery: String
+}
+
+type Mutation {
+  sayHelloMutation: String
+  createQuizMutation(QuizInput: QuizInput): Quiz
+  createQuizQuestions(
+    QuizId: ID!
+    QuizQuestionInput: QuizQuestionInput
+  ): [QuizQuestions]
+}
