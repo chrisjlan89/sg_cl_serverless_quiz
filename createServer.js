@@ -4,8 +4,7 @@ const db = require("./db/Models");
 const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutations");
 const Date = require("./resolvers/Scalars");
-const connection = mongoose.connect(
-  "mongodb+srv://chris:1234@cluster0-ib5ri.gcp.mongodb.net/test?retryWrites=true&w=majority",
+const connection = mongoose.connect(process.env.MONGO_URI
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("conneted")
 );
